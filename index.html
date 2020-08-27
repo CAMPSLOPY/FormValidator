@@ -11,6 +11,7 @@
        on websites and will also give them hints on how to be safe on the web."
     />
     <meta name="robots" content="index,follow" />
+    <link rel="icon" href="./forrrm.png">
     <link rel="stylesheet" href="styles.css" />
     <title>Form Validator</title>
   </head>
@@ -18,33 +19,33 @@
     <div class="container">
       <form id="form" class="form" action="">
         <h2>Register with Us</h2>
+
         <div class="form-control">
           <label for="username">Username:</label>
-          <input type="text" id="username" placeholder="Enter Username" />
+          <input type="text" id="username" placeholder="Enter Username" required />
           <small>Error Messsage</small>
         </div>
 
         <div class="form-control">
           <label for="Email">Email:</label>
-          <input type="email" id="username" placeholder="Enter Username" />
+          <input type="text" id="email" placeholder="Enter Email" required />
           <small>Error Messsage</small>
         </div>
 
         <div class="form-control">
-          <label for="username">Username:</label>
-          <input type="text" id="username" placeholder="Enter Username" />
+          <label for="password">Password:</label>
+          <input type="password" id="password" placeholder="Enter Password" required />
           <small>Error Messsage</small>
         </div>
 
         <div class="form-control">
-          <label for="username">Username:</label>
-          <input type="text" id="username" placeholder="Enter Username" />
+          <label for="password2">Confirm Password:</label>
+          <input type="text" id="password2" placeholder="Confirm Password" required />
           <small>Error Messsage</small>
         </div>
+        <button id="button">Submit</button>
       </form>
-      <button id="button">
-          <h2>Submit</h2>
-      </button>
+      
     </div>
 
     <script src="./app.js"></script>
