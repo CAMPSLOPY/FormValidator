@@ -33,18 +33,13 @@ function validateEmail(input) {
   if (re.test(input.value.trim())) {
     showSuccess(input);
   } else {
-    showError(input, "email is not valid");
+    showError(input, "Email is not valid");
   }
 }
-
-function getFieldName(input) {
-  return input.id.charAt(0).toUppercase() + input.id.slice(1);
-}
-
 function checkRequired(inputArr) {
   inputArr.forEach(function (input) {
     if (input.value.trim() === "") {
-      showError(input, `${input.id} is required`);
+      showError(input, `${input.name} is required`);
     } else {
       showSuccess(input);
     }
@@ -55,15 +50,9 @@ function checkRequired(inputArr) {
 
 function checkLength(input, min, max) {
   if (input.value.length < min) {
-    showError(
-      input,
-      `${getFieldName(input)} must be at least ${min} characters`
-    );
+    showError(input, `${input.name} must be at least ${min} characters`);
   } else if (input.value.length > max) {
-    showError(
-      input,
-      `${getFieldName(input)} must be at less than ${max} characters`
-    );
+    showError(input, `${input.name} must be at less than ${max} characters`);
   } else {
     showSuccess(input);
   }
@@ -74,7 +63,5 @@ function checkLength(input, min, max) {
 function checkPasswordMatch(input1, input2) {
   if (input1.value !== input2.value) {
     showError(input2, "Password Do not match");
-  } else {
-    showSuccess(input);
   }
 }
