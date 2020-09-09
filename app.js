@@ -7,16 +7,11 @@ const password2 = document.getElementById("password2");
 // event listeners
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  if (username.value === "") {
-    showError(username, "Username is Required");
-  } else {
-    showSuccess(username);
-  }
-  if (email.value === "") {
-    showError(email, "email is required");
-  } else {
-    showSuccess(email);
-  }
+  checkRequired([username, email, password, password2]);
+  checkLength(username, 3, 15);
+  checkLength(password, 6, 25);
+  validateEmail(email);
+  checkPasswordMatch(password, password2);
 });
 
 // functions
@@ -33,7 +28,53 @@ function showSuccess(input) {
 }
 
 // to check if email is valid
-function validateEmail(email) {
+function validateEmail(input) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
+  if (re.test(input.value.trim())) {
+    showSuccess(input);
+  } else {
+    showError(input, "email is not valid");
+  }
+}
+
+function getFieldName(input) {
+  return input.id.charAt(0).toUppercase() + input.id.slice(1);
+}
+
+function checkRequired(inputArr) {
+  inputArr.forEach(function (input) {
+    if (input.value.trim() === "") {
+      showError(input, `${input.id} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+
+// check length
+
+function checkLength(input, min, max) {
+  if (input.value.length < min) {
+    showError(
+      input,
+      `${getFieldName(input)} must be at least ${min} characters`
+    );
+  } else if (input.value.length > max) {
+    showError(
+      input,
+      `${getFieldName(input)} must be at less than ${max} characters`
+    );
+  } else {
+    showSuccess(input);
+  }
+}
+
+// check if passwords match
+
+function checkPasswordMatch(input1, input2) {
+  if (input1.value !== input2.value) {
+    showError(input2, "Password Do not match");
+  } else {
+    showSuccess(input);
+  }
 }
